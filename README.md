@@ -1,3 +1,3 @@
-Material for a talk given at EPFL on Dec 1
+Material for my lecture on Distributed Ledger Technology
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tschm/epfl/master?filepath=work)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tschm/dlt/master?filepath=work)
