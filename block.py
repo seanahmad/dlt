@@ -3,6 +3,40 @@ import hashlib
 
 from time import time
 
+class Bblock(object):
+
+    def __enter__(self):
+        # make a database connection and return it
+        self.block = Block()
+        return self.block
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(self.block.time)
+        print(self.block.transactions)
+        print(self.block.proof)
+        print(self.block)
+        # make sure the dbconnection gets closed
+        # self.__time = round(time(), 3)
+
+        #self.dbconn.close()
+
+    # def append_transaction(self, sender, recipient, amount):
+    #     """
+    #     Creates a new transaction to go into the next mined Block
+    #     :param sender: <str> Address of the Sender
+    #     :param recipient: <str> Address of the Recipient
+    #     :param amount: <int> Amount
+    #     :return: <int> The index of the Block that will hold this transaction
+    #     """
+    #     self.__transactions.append({
+    #         'sender': sender,
+    #         'recipient': recipient,
+    #         'amount': amount,
+    #     })
+
+
+
+
 class Block(object):
     @staticmethod
     def f_hash(block):
@@ -51,17 +85,6 @@ class Block(object):
 
     def __repr__(self):
         return str({"timestamp": self.time, "previous": self.previous, "transactions": self.transactions, "proof": self.proof})
-
-class DatabaseConnection(object):
-
-    def __enter__(self):
-        # make a database connection and return it
-        self.b = Block()
-        return self.b
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        # make sure the dbconnection gets closed
-        self.dbconn.close()
 
 
 class Chain(object):
@@ -131,40 +154,44 @@ class Chain(object):
         return guess_hash[:4] == "0000"
 
 
+# if __name__ == '__main__':
+#     chain = Chain()
+#
+#     # construct the Genesis Block
+#     b1 = chain.create_block()
+#     # append some transactions
+#     b1.append_transaction(sender="a", recipient="b", amount=10.0)
+#     b1.append_transaction(sender="a", recipient="c", amount=30.0)
+#     chain.append(b1)
+#
+#     # mine a second block
+#     b2 = chain.create_block()
+#     b2.append_transaction(sender="c", recipient="b", amount=20.0)
+#     chain.append(b2)
+#
+#
+#     # various miners are now trying to validate and solve the Proof by Work problem:
+#     if chain.validate:
+#
+#         #b2 = chain.append_block()
+#         #print(b2)
+#
+#         #b2.append_transaction(sender="c", recipient="b", amount=20.0)
+#         #b2.hash = Block.f_hash(b2)
+#
+#         chain.verify()
+#
+#         for block in chain:
+#             print(block)
+#
+#     #assert False
+#
+#     #for a1, a2 in zip(chain[:-1], chain[1:]):
+#     #    assert a2.previous == Block.hash(a1)
+#
+#
+#
+
 if __name__ == '__main__':
-    chain = Chain()
-
-    # construct the Genesis Block
-    b1 = chain.create_block()
-    # append some transactions
-    b1.append_transaction(sender="a", recipient="b", amount=10.0)
-    b1.append_transaction(sender="a", recipient="c", amount=30.0)
-    chain.append(b1)
-
-    # mine a second block
-    b2 = chain.create_block()
-    b2.append_transaction(sender="c", recipient="b", amount=20.0)
-    chain.append(b2)
-
-
-    # various miners are now trying to validate and solve the Proof by Work problem:
-    if chain.validate:
-
-        #b2 = chain.append_block()
-        #print(b2)
-
-        #b2.append_transaction(sender="c", recipient="b", amount=20.0)
-        #b2.hash = Block.f_hash(b2)
-
-        chain.verify()
-
-        for block in chain:
-            print(block)
-
-    #assert False
-
-    #for a1, a2 in zip(chain[:-1], chain[1:]):
-    #    assert a2.previous == Block.hash(a1)
-
-
-
+    with Bblock() as block:
+        block.append_transaction(sender="c", recipient="b", amount=20.0)

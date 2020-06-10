@@ -5,6 +5,7 @@
 !binder/jupyter_notebook_config.py
 !work
 
+**/nonpublic
 **/__pycache__
 **/*.pyc
 .ipynb_checkpoints

@@ -7,7 +7,7 @@ RUN conda install -c damianavila82 rise
 ENV WORK=/home/jovyan/work
 
 # COPY --chown=$NB_UID:$NB_UID ./work ${WORK}
-COPY ./work ${WORK}
+COPY ./work/*.ipynb ${WORK}
 
 # copy the config file
 COPY ./binder/jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
