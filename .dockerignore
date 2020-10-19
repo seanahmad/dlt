@@ -2,7 +2,6 @@
 
 # Ignore Everything
 **
-!binder/jupyter_notebook_config.py
 !work
 
 **/nonpublic

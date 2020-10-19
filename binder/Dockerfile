@@ -1,15 +1,8 @@
-# Set the base image to Ubuntu
-FROM jupyter/datascience-notebook:d4cbf2f80a2a
+# Set the base image to jupyter
+FROM tschm/jupyter:1.3.1 as jupyter
 
-# install rise
-RUN conda install -c damianavila82 rise
+#RUN conda install -y -c conda-forge statsmodels && conda clean -y --all
 
-ENV WORK=/home/jovyan/work
+COPY --chown=jovyan:100 ./work $WORK
 
-# COPY --chown=$NB_UID:$NB_UID ./work ${WORK}
-COPY ./work/*.ipynb ${WORK}
-
-# copy the config file
-COPY ./binder/jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
-
-WORKDIR ${WORK}
+WORKDIR /home/$NB_USER
