@@ -1,5 +1,5 @@
 #!make
-PROJECT_VERSION := 0.2.2
+PROJECT_VERSION := 0.2.3
 
 SHELL := /bin/bash
 IMAGE := tschm/dlt
