@@ -3,6 +3,7 @@
 # Ignore Everything
 **
 !work
+!requirements.txt
 
 **/nonpublic
 **/__pycache__

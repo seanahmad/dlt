@@ -1,5 +1,5 @@
 #!make
-PROJECT_VERSION := 0.2.3
+PROJECT_VERSION := 0.3.0
 
 SHELL := /bin/bash
 IMAGE := tschm/dlt
@@ -23,7 +23,7 @@ build:
 	docker-compose build jupyter
 
 jupyter: build
-	echo "http://localhost:${PORT}"
+	@echo "http://localhost:8888"
 	docker-compose up jupyter
 
 tag:
