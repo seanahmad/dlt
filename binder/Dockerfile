@@ -18,11 +18,6 @@ RUN mkdir /var/lib/apt/lists/partial && \
 
 USER jovyan
 
-
-#RUN conda install -y -c conda-forge statsmodels && conda clean -y --all
-RUN pip install mod==0.3.0 \
-                fastecdsa==2.1.5
-
 COPY --chown=jovyan:100 ./work $WORK
 
 WORKDIR /home/$NB_USER
